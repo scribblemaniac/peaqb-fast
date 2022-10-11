@@ -156,7 +156,7 @@ main(int argc, char *argv[])
     zl = (double *)malloc(bark * sizeof(double));
     zc = (double *)malloc(bark * sizeof(double));
     zu = (double *)malloc(bark * sizeof(double));
-    assert(fL != NULL && fC != NULL && fU != NULL && zl != NULL 
+    assert(fL != NULL && fC != NULL && fU != NULL && zl != NULL
     	   && zc != NULL && zu != NULL);
 
     for(k=0;k<bark;k++) {
@@ -427,37 +427,6 @@ main(int argc, char *argv[])
 			   oveRet.DI, oveRet.ODG);
 	    }
 	}
-
-	{
-	FILE *res;
-
-	res = fopen(LOGRESULT,"a+");
-	fprintf(res,"\nFile: %s\n"
-		    "\nframe: %d"
-		    "\nBandwidthRefb: %g"
-		    "\nBandwidthTestb: %g"
-		    "\nTotalNMRb %g"
-		    "\nWinModDiff1b: %g"
-		    "\nADBb: %g"
-		    "\nEHSb: %g"
-		    "\nAvgModDiff1b: %g"
-		    "\nAvgModDiff2b %g"
-		    "\nRmsNoiseLoudb: %g"
-		    "\nMFPDb: %g"
-		    "\nRelDistFramesb: %g"
-		    "\nDI: %g"
-		    "\nODG: %g\n",
-		    filetest, count, processed.BandwidthRefb,
-		    processed.BandwidthTestb, processed.TotalNMRb,
-		    processed.WinModDiff1b, processed.ADBb,
-		    processed.EHSb, processed.AvgModDiff1b,
-		    processed.AvgModDiff2b,
-		    processed.RmsNoiseLoudb, processed.MFPDb,
-		    processed.RelDistFramesb,
-		    oveRet.DI, oveRet.ODG);
-
-	fclose(res);
-	}
     }
 
     if(numchref == 2) {
@@ -584,36 +553,6 @@ main(int argc, char *argv[])
 			   oveRet.DI, oveRet.ODG);
 	}
 
-	{
-	FILE *res;
-
-	res = fopen(LOGRESULT,"a+");
-	fprintf(res,"\nFile: %s\n"
-		    "\nframe: %d"
-		    "\nBandwidthRefb: %g"
-		    "\nBandwidthTestb: %g"
-		    "\nTotalNMRb %g"
-		    "\nWinModDiff1b: %g"
-		    "\nADBb: %g"
-		    "\nEHSb: %g"
-		    "\nAvgModDiff1b: %g"
-		    "\nAvgModDiff2b %g"
-		    "\nRmsNoiseLoudb: %g"
-		    "\nMFPDb: %g"
-		    "\nRelDistFramesb: %g"
-		    "\nDI: %g"
-		    "\nODG: %g\n",
-		    filetest, count, processed.BandwidthRefb,
-		    processed.BandwidthTestb, processed.TotalNMRb,
-		    processed.WinModDiff1b, processed.ADBb,
-		    processed.EHSb, processed.AvgModDiff1b,
-		    processed.AvgModDiff2b,
-		    processed.RmsNoiseLoudb, processed.MFPDb,
-		    processed.RelDistFramesb,
-		    oveRet.DI, oveRet.ODG);
-
-	fclose(res);
-	}  
     }
 
     fftw_destroy_plan(plan);
@@ -874,8 +813,8 @@ ProcessFrame(signed int *ch1ref, signed int *ch2ref, int lpref,
 				 &Ptildetmp, &PMtmp, &Qsum,
 				 &ndistorcedtmp, hann);
     else
-	processed.ADBb = detprob(processch1.Etest, NULL, 
-				 processch1.Eref, NULL, 
+	processed.ADBb = detprob(processch1.Etest, NULL,
+				 processch1.Eref, NULL,
 				 &Ptildetmp, &PMtmp, &Qsum,
 				 &ndistorcedtmp, hann);
     processed.MFPDb = PMtmp;
@@ -913,7 +852,7 @@ ProcessFrame(signed int *ch1ref, signed int *ch2ref, int lpref,
     logvariable("Modrefdx.txt", processch2.Modref, bark);
     #endif
     */
- 
+
     /*{
     extern double Cfft[];
     extern int maxk;
@@ -933,7 +872,7 @@ void
 fatalerr(char * pattern,...) /* Error handling routine */
 {
     va_list ap;
-    
+
     va_start(ap, pattern);
 
     fprintf(stderr,"PEAQ-");
@@ -993,7 +932,7 @@ usage(char * name) /* Print usage */
 {
     fprintf(stderr, "PEAQ Algorithm. Giuseppe Gottardi 'oveRet'"
     		    "<gottardi@ailinux.org>\n\n");
-    
+
     fprintf(stderr, "usage: %s <option>\n", name);
     fprintf(stderr, "     -r  reffile[:lp] (lp default = 92)\n"
     		    "     -t  testfile[:lp] (lp default = 92)\n"
